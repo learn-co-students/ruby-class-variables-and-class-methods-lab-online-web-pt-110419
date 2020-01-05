@@ -14,7 +14,6 @@ class Song
       @artist = artist 
       @genre = genre
       @@artits = artist
-      @@genres = genre
       @@artists << artist  
       @@genres << genre
       @@count += 1
@@ -43,7 +42,11 @@ class Song
   end 
   
   def self.artist_count
-    @@count.uniq
+    new_hash = Hash.new(0)
+    @@artists.each do |a|
+     new_hash[a] += 1 
+    end 
+    new_hash
   end
   
   def self.genres
@@ -51,6 +54,14 @@ class Song
   end
   
   def self.genre_count
-    @@count
+   new_hash = {}
+    @@genres.each do |h| 
+    if new_hash[h] 
+     new_hash[h] += 1
+    else 
+      new_hash[h] = 1
+    end 
+    end
+    new_hash
   end
 end
